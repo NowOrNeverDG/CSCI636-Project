@@ -1,3 +1,3 @@
 # DTSC701-project
-Data Science 701 - M02D/ Fall 2020 - Group Project
+Data Science 701 - M02D/ Fall 2020 - Group Project<br>
 Professor: Dr. Liu
