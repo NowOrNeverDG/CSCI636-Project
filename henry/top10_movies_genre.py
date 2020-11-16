@@ -1,12 +1,11 @@
 # find the top 10 movies in each genre based on
 # their movie ratings based on user rating
-
-from pyspark import SparkConf, SparkContext
 import re
 import collections
-# import findspark
-# findspark.init("/opt/spark")
+import findspark
+findspark.init("/opt/spark")
 
+from pyspark import SparkConf, SparkContext
 
 ABSOLUTE_DATA_PATH = "home/hui/Projects/DTSC701-project/dataset/ml-100k/"
 
@@ -32,10 +31,12 @@ def loadMovieGenre():
   # therefore, context reader does not work in this case
   # OUTPUT: (key: movie_id, val: {genre collection})
     movieNames = {}
-    with open("/" + ABSOLUTE_DATA_PATH + "u.item", encoding='ascii', errors='ignore') as reader:
+    with open("/" + ABSOLUTE_DATA_PATH + "u.item", encoding='utf-8', errors='ignore') as reader:
         for line in reader:
             fields = line.split('|')
-            movieNames[int(fields[0])] = fields[5:(len(fields) - 1)]
+            temp = fields[-1:][0].strip()
+            fields[-1:] = temp
+            movieNames[int(fields[0])] = fields[5:(len(fields))]
     return movieNames
 
 
@@ -49,6 +50,6 @@ genreDict = loadMovieGenre()
 # for key, val in ratings_parse.collect():
 #   print(str(key) + ", " + str(val))
 
-# for key, val in genreDict.items():
-#     print('%s, %s' % (key, val))
+for key, val in genreDict.items():
+    print('%s, %s' % (key, val))
 
