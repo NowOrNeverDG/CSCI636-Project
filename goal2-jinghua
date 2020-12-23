@@ -1,0 +1,39 @@
+from mrjob.job import MRJob
+from mrjob.step import MRStep
+
+
+class MRWorst10Movies(MRJob):
+
+    def mapper(self, _, line):
+        user_id, movie_id, rating, timestamp = line.strip().split(',')
+        if not user_id.isdigit():
+            return
+        yield (movie_id, 1)
+
+    def combiner(self, movie_id, count):
+        yield (movie_id, sum(count))
+    
+    def reducer1(self, movie_id, count):
+        #to same reducer
+        yield None, (sum(count), movie_id)
+
+    # discard the key; it is just None
+    def reducer2(self, _, pairs):
+        # each item of word_count_pairs is (count, word),
+        # so yielding one results in key=counts, value=word
+        top10 = sorted(pairs)[:10]
+        return [(int(b), a) for a, b in top10]
+
+
+    def steps(self):
+        return [
+            MRStep(
+                mapper=self.mapper,
+                combiner=self.combiner,
+                reducer=self.reducer1),
+            MRStep(reducer=self.reducer2)
+        ]
+
+
+if __name__ == '__main__':
+    MRWorst10Movies.run()
