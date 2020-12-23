@@ -1,0 +1,20 @@
+if __name__ == "__main__":
+    with open('results3.csv') as f:
+        lines = f.readlines()
+
+    id2movie = {}
+    with open('movies.csv') as f:
+        mlines = f.readlines()
+    for line in mlines[1:]:
+        ls = line.split(',')
+        id2movie[int(ls[0])] = ls[1]
+
+    res = []
+    for line in lines:
+        ls = line.split('\t')
+        movies_ls = [id2movie[item] for item in eval(ls[1])]
+        res.append((ls[0], movies_ls))
+    res = sorted(res)
+    with open('results-3.csv', 'w') as f:
+        for k, v in res:
+            f.write('{},{}\n'.format(k, v))
