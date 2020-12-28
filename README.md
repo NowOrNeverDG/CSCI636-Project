@@ -1,7 +1,7 @@
 # CSCI636-project
 CSCI636 - Big Data Analysis - Group Project<br>
 Professor: Dr. Liu<br>
-Team Member: Ge Ding, Hui(Henry) Chen, Jiahua Li
+Team Member: Ge Ding, Hui(Henry) Chen, Jinghua Li
 
 ## Get Started
 * Setup the datasource: ``` sh ./setup.sh ```
