@@ -1,6 +1,7 @@
-# DTSC701-project
-Data Science 701 - M02D/ Fall 2020 - Group Project<br>
-Professor: Dr. Liu
+# CSCI636-project
+CSCI636 - Big Data Analysis - Group Project<br>
+Professor: Dr. Liu<br>
+Team Member: Ge Ding, Hui(Henry) Chen, Jiahua Li
 
 ## Get Started
 * Setup the datasource: ``` sh ./setup.sh ```
