@@ -23,6 +23,9 @@ There are 9 goals of data analysis on movie genres, movie ratings:<br>
 8. Find the top ten worst movies in each genre.
 9. Movie recommendation system
 
+## Requirement
+Python, Spark, Mapreduce
+
 ## Get Started
 * Setup the datasource: ``` sh ./setup.sh ```
 
